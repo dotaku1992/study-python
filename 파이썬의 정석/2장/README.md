@@ -11,7 +11,7 @@ python에서는 한줄로 주석을 사용하고 싶을 경우 `#` 을 사용하
 **여러줄 주석에서는 작은따옴표와 큰따옴표에서 주석 내용에 큰따옴표가 존재한다면 작은따옴표로 둘러쌓고 작은 따옴표가 있다면 큰따옴표로 둘러쌓으면 된다.**
 
 ## print()
-
+* * *
 파이썬에서는 `print()` 를 통해서 화면에 출력할 수 있다.  
 
 ### 기본적인 사용법
@@ -19,7 +19,7 @@ python에서는 한줄로 주석을 사용하고 싶을 경우 `#` 을 사용하
 ```python
 print(1) #정수형 리터럴 1을 출력
 print('abcd') # 문자열 리터럴 'abcd'를 출력
-print([1,'a',3.0]) # 리스트를 출력 
+print([1,'a',3.0]) # 리스트를 출력 이때 sep으로 리스트의 원소가 구분되지 않습니다. 이때는 join을 사용해주세요!
 ```
 
 * `print()`는 인자로 `sep` 와 `end` 인자가 존재한다.
@@ -40,7 +40,8 @@ print(*arr2d,sep='\n')
 
 
 ## input()
-
+* * *
+* `input()`은 **개행 문자까지 입력을 받고 개행문자를 제외한 문자열을 반환한다. 즉 개행문자는 들어가지 않는다.**
 * input()은 키보드 입력받을때 사용하게 된다. 인자를 통해 화면에 출력하고 입력을 받을 수 있다.  
 `ex : n = input("정수 n을 입력하세요")`
 
@@ -49,4 +50,40 @@ print(*arr2d,sep='\n')
 a,b = input().split() # 입력이 `1 2`로 주어졌을때 default값인 스페이스 바로 분리해서 `1`와 `2`로 나눠서 각각 a,b에 unpack 됩니다.
 print(a,b) # '1','2'
 ```
+## 형변환
 
+* str -> 정수형으로 변환시키고자 할 때에는 int(str)을 통해서 문자열('10')을 정수형으로 바꿀 수 있다.
+* 반대로 정수형 -> str으로 형변환도 가능하다.
+```python
+intstr = '10'
+intval = int(intstr)
+print(intval) # 10
+
+intval = 10
+strval = str(intval)
+print(strval,type(strval)) # 10 ,str
+
+```
+* 만일 정수형으로 나타낼 수 없는 문자('abc')일경우에는 다음과 같은 에러를 발생시킨다.
+`ValueError: invalid literal for int() with base 10: 'abc'`  
+* 그 밖에도 다양한 형변환이 존재한다.
+```python
+a = 10
+print(float(a) , type(float(a))) # 10.0 , float
+print(str(a),type(str(a))) # 10 , str
+
+asciichr = 'A'
+print(ord(asciichr),type(ord(asciichr))) # 65 ,int # 문자하나에 해당되는 아스키코드값으로 반환한다 정수형
+print(chr(65),type(chr(65))) # A , str # 정수형에 맞는 아스키코드키에 해당하는 문자를 반환한다
+```
+## format메소드를 통한 서식화
+* * *
+* python에서는 format을 통해서 서식을 지정할 수 있다.
+* print()는 함수, format을 메서드이다
+* '{} {} {} {} {}'.format(,,,,)에서 가장 좌측의 {}부터 차례로 대입이 되게 된다.
+* 다음과 같이 사용할 수 도 있다.
+```python
+arr = [1,2,3]
+print('{},{},{}'.format(*arr)) # 1 2 3이 unpack되어서 각각의 {} {} {}에 차례로 적용된다.
+```
+* 나중에 배울 `fstring`에서도 포맷팅을 사용할 수 있고 python에서는 이것을 더 권장한다. 이에 대한 내용은 6장에서 더 자세히 배울 예정
